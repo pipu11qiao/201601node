@@ -1,0 +1,23 @@
+{
+  "name": "pipu11qiao_201601node",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mime": "^1.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pipu11qiao/201601node.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pipu11qiao/201601node/issues"
+  },
+  "homepage": "https://github.com/pipu11qiao/201601node#readme"
+}
