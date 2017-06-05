@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta
+		charset="UTF-8">
+	<title>
+		Title</title>
+</head>
+<body>
+	<div id="clock"></div>
+	<script>
+		var $url = 'http://localhost:8080';
+		var el = document.getElementById('clock');
+		window.onload = function () {
+			setInterval(function() {
+				// 1、创建ajax对象
+				var xhr = new XMLHttpRequest();
+				// 2. 指定参数
+				xhr.open('get','/clock',true);
+				// 3, 指定接受相应的回调函数 state 五种状态
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4) {
+						if (xhr.status === 200) {
+							el.innerHTML = xhr.responseText;
+						} else {
+							el.innerHTML = '错误' + xhr.responseText;
+						}
+					}
+				};
+				// 4. 发送数据指定请求踢
+				xhr.send();
+			},1000)
+		}
+	</script>
+</body>
+</html>
