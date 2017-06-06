@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta
+		charset="UTF-8">
+	<title>
+		Title</title>
+</head>
+<body>
+<h>Ajax</h>
+<form  name="userform" >
+	用户名<input type="text" name="username"><br/>
+	密码<input type="text" name="password"><br/>
+	头像 <input type="file"  name="avatar">
+	<button id="regBtn">注册</button>
+	<!--<input type="submit" value="注册">-->
+</form>
+<script>
+
+	window.onload = function () {
+		document.querySelector('#regBtn').addEventListener('click',function (e) {
+			e.preventDefault();
+			var xhr = new XMLHttpRequest();
+			xhr.open('post','/reg2',true); // @param3 是否异步
+			xhr.responseType = 'text';
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onreadystatechange = function () {
+				if(xhr.readyState === 4 && /2\d{2}/g.test(xhr.status)) {
+					console.log(xhr.responseText);
+				
+				}
+
+			};
+			// 把数据放在请求体里了
+			var formData = new FormData();
+			formData.append('username',document.querySelector('input[name="username"]').value);
+			formData.append('password',document.querySelector('input[name="password"]').value);
+			var avatar = document.querySelector('input[name="avatar"]');
+			formData.append('avatar',avatar.files[0])
+			xhr.send(formData);
+		})
+	};
+
+	
+</script>
+</body>
+</html>
