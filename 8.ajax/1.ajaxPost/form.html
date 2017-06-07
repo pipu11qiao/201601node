@@ -27,15 +27,26 @@
 			xhr.onreadystatechange = function () {
 				if(xhr.readyState === 4 && /2\d{2}/g.test(xhr.status)) {
 					console.log(xhr.responseText);
+					var image = new Image();
+					image.src = encodeURIComponent(xhr.responseText);
+					image.width = 200;
+					image.height = 200;
+					
+					image.onload = function() {
+						document.querySelectorAll('h')[0].appendChild(image);
+					};
+					
 				
 				}
 
 			};
 			// 把数据放在请求体里了
 			var formData = new FormData();
+			// 给这个表单增加一个表单元素
 			formData.append('username',document.querySelector('input[name="username"]').value);
 			formData.append('password',document.querySelector('input[name="password"]').value);
 			var avatar = document.querySelector('input[name="avatar"]');
+			// 给这个表单对象增加一个文件元素
 			formData.append('avatar',avatar.files[0])
 			xhr.send(formData);
 		})

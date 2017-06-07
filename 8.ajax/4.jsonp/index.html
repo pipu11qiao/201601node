@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta
+		charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<ul id="content">
+	
+</ul>
+<script>
+	var renderFun = function (data) {
+		var str = '';
+		data.forEach(function (item) {
+			str += '<li><span>' + item.username + '</span><span>' + item.password + '</span></li>';
+		});
+		document.querySelector('#content').innerHTML = str;
+	};
+	var serverFun = function (data) {
+		renderFun(data);
+	};
+	// jsonp
+	var script = document.createElement('script');
+	script.src = '/index.js?callback=serverFun';
+	document.body.appendChild(script);
+</script>
+
+</body>
+</html>

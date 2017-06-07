@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta
+		charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	var xhr = new XMLHttpRequest();
+	xhr.open('post','/reg',true);
+	xhr.responseType = 'json';
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState === 4 && /2\d{2}/.test(xhr.status)) {
+			console.log(xhr.response);
+			xhr.response.forEach(function (item) {
+				var el = document.createElement('h1');
+				el.innerHTML = item.name;
+				document.body.appendChild(el);
+			})
+		}
+	};
+	xhr.send(JSON.stringify({name:'xiaoming'}));
+</script>
+</html>
